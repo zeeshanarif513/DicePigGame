@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 currscore_p2.setText("0");
                 roll.setEnabled(true);
                 hold.setEnabled(true);
+                finalScore.setEnabled(true);
+                finalScore.setText("");
                 image.setImageBitmap(null);
                 break;
             case R.id.roll:
@@ -136,7 +138,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         title_p1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_brightness_2_24, 0);
                         roll.setEnabled(false);
                         hold.setEnabled(false);
-
+                        finalScore.setText("");
+                        finalScore.setEnabled(false);
                     }
                 }
                 else{
@@ -158,6 +161,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         title_p2.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_brightness_2_24, 0);
                         roll.setEnabled(false);
                         hold.setEnabled(false);
+                        finalScore.setText("");
+                        finalScore.setEnabled(false);
                     }
                 }
                 break;

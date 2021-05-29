@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9DDFE8"
+    android:background="#C8BDAB"
     tools:context=".MainActivity">
 
     <Button
@@ -12,8 +12,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/newGame"
         android:text=" New Game"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:background="?android:attr/selectableItemBackground"
         android:drawableLeft="@drawable/ic_baseline_add_circle_outline_24"
-        android:background="#9DDFE8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -26,6 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newGame"/>
     <ImageView
+        android:elevation="0.5dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
@@ -41,7 +45,7 @@
         android:id="@+id/players"
         android:orientation="horizontal"
         android:weightSum="2"
-        android:paddingTop="16dp"
+        android:paddingTop="10dp"
         android:paddingBottom="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,13 +55,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/player1Area"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="32sp"
                 android:textColor="#000000"
                 android:text="Player 1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:id="@+id/player1"
                 android:layout_gravity="center"/>
             <TextView
@@ -65,13 +73,14 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:textSize="100sp"
-                android:textColor="#ff0000"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#D65252"
                 android:id="@+id/player1Score"
                 android:layout_gravity="center"/>
             <LinearLayout
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="#ff0000"
+                android:background="#D65252"
                 android:layout_gravity="center"
                 android:orientation="vertical">
                 <TextView
@@ -99,13 +108,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/player2Area"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="32sp"
                 android:textColor="#000000"
                 android:text="Player 2"
+                android:fontFamily="sans-serif-smallcaps"
                 android:id="@+id/player2"
                 android:layout_gravity="center"/>
             <TextView
@@ -113,13 +126,14 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:textSize="100sp"
-                android:textColor="#ff0000"
+                android:textColor="#D65252"
+                android:fontFamily="sans-serif-light"
                 android:id="@+id/player2Score"
                 android:layout_gravity="center"/>
             <LinearLayout
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="#ff0000"
+                android:background="#D65252"
                 android:layout_gravity="center"
                 android:orientation="vertical">
                 <TextView
@@ -152,10 +166,11 @@
         android:id="@+id/roll"
         android:text=" ROLL DICE"
         android:drawableLeft="@drawable/ic_baseline_flip_camera_android_24"
-        android:background="@drawable/button_background"
+        android:background="?android:attr/selectableItemBackground"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
-
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-smallcaps"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/players"/>
@@ -167,26 +182,36 @@
         android:drawableLeft="@drawable/ic_baseline_move_to_inbox_24"
         android:text=" HOLD"
         android:layout_marginTop="8dp"
-        android:background="@drawable/button_background"
+        android:background="?android:attr/selectableItemBackground"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-smallcaps"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roll"/>
-    <EditText
-        android:id="@+id/finalScore"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:hint="Final Score"
-        android:layout_marginTop="16dp"
-        android:inputType="number"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="653dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hold"/>
+        app:layout_constraintTop_toBottomOf="@+id/hold"
+        android:gravity="center">
 
-
-
-
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/finalScore"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:hint="Final Score"
+            android:layout_marginTop="16dp"
+            android:inputType="number"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-smallcaps"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
