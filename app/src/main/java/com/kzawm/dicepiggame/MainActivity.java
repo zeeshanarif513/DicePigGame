@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,11 +20,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView title_p1,title_p2;
     TextView totalscore_p1,totalscore_p2;
     TextView currscore_p1,currscore_p2;
+    EditText finalScore;
     ImageView image;
     Button roll,hold;
     Integer[] scores = {0,0};
     Integer holdscore = 0;
     Integer currPlayer = 1;
+    Integer final_score = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         totalscore_p2 = (TextView) findViewById(R.id.player2Score);
         currscore_p1 = (TextView) findViewById(R.id.player1Cscore);
         currscore_p2 = (TextView) findViewById(R.id.player2Cscore);
+        finalScore = (EditText) findViewById(R.id.finalScore);
         roll = (Button) findViewById(R.id.roll);
         hold = (Button) findViewById(R.id.hold);
         image = (ImageView) findViewById(R.id.dice);
+
 
         roll.setOnClickListener(this);
         hold.setOnClickListener(this);
@@ -110,11 +115,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.hold:
+                if(!finalScore.getText().toString() .equals(""))
+                    final_score = Integer.parseInt(finalScore.getText().toString());
                 if(currPlayer == 1) {
                     scores[0] += holdscore;
                     holdscore = 0;
                     totalscore_p1.setText(scores[0]+"");
-                    if(scores[0] < 10) {
+                    if(scores[0] < final_score) {
                         currscore_p1.setText("0");
                         currPlayer = 2;
                         title_p2.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_brightness_1_24, 0);
@@ -136,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     scores[1] += holdscore;
                     holdscore = 0;
                     totalscore_p2.setText(scores[1]+"");
-                    if(scores[1] < 10) {
+                    if(scores[1] < final_score) {
                         currscore_p2.setText("0");
                         currPlayer = 1;
                         title_p1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_brightness_1_24, 0);
