@@ -2,6 +2,7 @@ package com.kzawm.dicepiggame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +11,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button newGame;
+    Button setScore;
     LinearLayout p1,p2;
     TextView title_p1,title_p2;
     TextView totalscore_p1,totalscore_p2;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Integer holdscore = 0;
     Integer currPlayer = 1;
     Integer final_score = 10;
+    int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +49,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         roll = (Button) findViewById(R.id.roll);
         hold = (Button) findViewById(R.id.hold);
         image = (ImageView) findViewById(R.id.dice);
+        setScore = (Button) findViewById(R.id.btnSetScore);
 
 
         roll.setOnClickListener(this);
         hold.setOnClickListener(this);
         newGame.setOnClickListener(this);
+        setScore.setOnClickListener(this);
 
         title_p1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_brightness_1_24, 0);
         p1.setBackgroundResource(R.drawable.active_player);
+
+        //Changes
+        roll.setEnabled(false);
+
     }
 
     @Override
@@ -81,6 +91,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finalScore.setEnabled(true);
                 finalScore.setText("");
                 image.setImageBitmap(null);
+                //Changes
+                roll.setEnabled(false);
+                finalScore.setEnabled(true);
+                setScore.setEnabled(true);
                 break;
             case R.id.roll:
                 int random = new Random().nextInt(6) + 1;
@@ -166,6 +180,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 break;
+            case R.id.btnSetScore:
+                if(finalScore.getText().toString().isEmpty()){
+                    Toast.makeText(this,"You need to enter a score between 20 and 100.",Toast.LENGTH_SHORT).show();
+                }
+                else if(Integer.parseInt(finalScore.getText().toString()) < 20 || Integer.parseInt(finalScore.getText().toString()) > 100)
+                    Toast.makeText(this,"You need to enter a score between 20 and 100.",Toast.LENGTH_SHORT).show();
+                else{
+                    final_score = Integer.parseInt(finalScore.getText().toString());
+                    finalScore.setEnabled(false);
+                    roll.setEnabled(true);
+                    setScore.setEnabled(false);
+                }
         }
     }
 }
