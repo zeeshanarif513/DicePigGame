@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Changes
         roll.setEnabled(false);
-
+        hold.setEnabled(false);
     }
 
     @Override
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 image.setImageBitmap(null);
                 //Changes
                 roll.setEnabled(false);
+                hold.setEnabled(false);
                 finalScore.setEnabled(true);
                 setScore.setEnabled(true);
                 break;
@@ -190,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     final_score = Integer.parseInt(finalScore.getText().toString());
                     finalScore.setEnabled(false);
                     roll.setEnabled(true);
+                    hold.setEnabled(true);
                     setScore.setEnabled(false);
                 }
         }
